@@ -20,13 +20,9 @@ def sub_op(G, H, v):
 #Check if module
 def is_module(G, sub_G):
     for i in list(G.nodes):
-        if i in sub_G:
-            pass
-        else:
+        if i not in sub_G:
             for j in sub_G:
-            #print(j)
                 for m in sub_G:
-                    #print(m)
                     if (i,j) in G.edges or (j,i) in G.edges:
                         if (i,m) in G.edges or (m,i) in G.edges:
                             pass
