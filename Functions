@@ -59,3 +59,15 @@ def drawsubop(G,H,v):
     plt.subplot(122)
     nx.draw(sub_op(G, H, v),labels={n: n for n in sub_op(G, H, v)}, node_color= '#1725F2', node_size=800)
     plt.show()
+
+
+#To run functions you need to define your graphs G and H, and pick v
+G = nx.Graph()
+G.add_nodes_from([]) #add list of vertices
+G.add_edges_from([]) #add list of tuples of vertices with edges
+
+H = nx.Graph()
+H.add_nodes_from([]) #give these nodes different labels from G
+H.add_edges_from([])
+
+#Examples
