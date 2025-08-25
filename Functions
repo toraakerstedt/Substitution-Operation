@@ -16,7 +16,8 @@ def sub_op(G, H, v):
         for j in h_node:
             GH.add_edge(i,j)
     return GH
-    
+
+#Check if module
 def is_module(G, sub_G):
     for i in list(G.nodes):
         if i in sub_G:
@@ -35,6 +36,7 @@ def is_module(G, sub_G):
                         pass
     return True
 
+#Reverse operation
 def rev_sub_op(GH,H):
     if is_module(GH,H):
         newG = nx.Graph()
@@ -49,8 +51,9 @@ def rev_sub_op(GH,H):
         return newG
     else:
         return False
-            
-   def drawsubop(G,H,v):
+
+#Draw original and substituted graph 
+def drawsubop(G,H,v):
     plt.subplot(121)
     nx.draw(G, labels={n: n for n in G},node_color='#F21717', node_size=800)
     plt.subplot(122)
