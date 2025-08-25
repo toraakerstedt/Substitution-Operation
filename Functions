@@ -1,0 +1,58 @@
+import networkx as nx
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+
+#Substitution operation
+def sub_op(G, H, v):
+    GH = nx.Graph()
+    GH.add_nodes_from(G.nodes)
+    GH.add_edges_from(G.edges)
+    v_edge = list(GH.adj[v])
+    GH.remove_node(v)
+    h_node = list(H.nodes)
+    GH.add_nodes_from(H)
+    GH.add_edges_from(H.edges)
+    for i in v_edge:
+        for j in h_node:
+            GH.add_edge(i,j)
+    return GH
+    
+def is_module(G, sub_G):
+    for i in list(G.nodes):
+        if i in sub_G:
+            pass
+        else:
+            for j in sub_G:
+            #print(j)
+                for m in sub_G:
+                    #print(m)
+                    if (i,j) in G.edges or (j,i) in G.edges:
+                        if (i,m) in G.edges or (m,i) in G.edges:
+                            pass
+                        else:
+                            return False
+                    else:
+                        pass
+    return True
+
+def rev_sub_op(GH,H):
+    if is_module(GH,H):
+        newG = nx.Graph()
+        newG.add_nodes_from(GH.nodes)
+        newG.add_edges_from(GH.edges)
+        newG.remove_nodes_from(H)
+        newG.add_node('v')
+        for i in list(newG.nodes):
+            if i in list(GH.adj[H[0]]):
+                newG.add_edge(i,'v')
+                
+        return newG
+    else:
+        return False
+            
+   def drawsubop(G,H,v):
+    plt.subplot(121)
+    nx.draw(G, labels={n: n for n in G},node_color='#F21717', node_size=800)
+    plt.subplot(122)
+    nx.draw(sub_op(G, H, v),labels={n: n for n in sub_op(G, H, v)}, node_color= '#1725F2', node_size=800)
+    plt.show()
