@@ -60,6 +60,13 @@ def drawsubop(G,H,v):
     nx.draw(sub_op(G, H, v),labels={n: n for n in sub_op(G, H, v)}, node_color= '#1725F2', node_size=800)
     plt.show()
 
+def drawrevsubop(G,H):
+    plt.subplot(121)
+    nx.draw(G, labels={n: n for n in G},node_color='#F21717', node_size=800)
+    plt.subplot(122)
+    nx.draw(rev_sub_op(G, H),labels={n: n for n in rev_sub_op(G, H)}, node_color= '#1725F2', node_size=800)
+    plt.show()
+
 
 #To run functions you need to define your graphs G and H, and pick v
 G = nx.Graph()
@@ -73,12 +80,25 @@ H.add_edges_from([])
 #Examples
 A = nx.Graph()
 A.add_nodes_from([1,2,3,4,5,6]) 
-A.add_edges_from([(1,2),(1,3),(2,3),(4,1),(5,6)])
+A.add_edges_from([(1,2),(1,3),(2,3),(4,1),(5,6),(4,6)])
 
 B = nx.Graph()
 B.add_nodes_from(['a','b','c'])
 B.add_edges_from([('a','b'),('b','c')])
 
-sub_op(A,B,1)
-rev_sub_op(A,B)
+C = nx.Graph()
+C.add_nodes_from([1,2,3,4]) 
+C.add_edges_from([(1,2),(1,3),(2,3),(4,1),(4,2)])
+
+D = nx.Graph()
+D.add_nodes_from(['x','y','z']) 
+D.add_edges_from([('x,'y'),('x','z'),('y','z')])
+
+AB=sub_op(A,B,1)
+rev_sub_op(AB,['a','b','c'])
 drawsubop(A,B,1)
+drawrevsubop(AB,['a','b','c'])
+CD=sub_op(C,D,1)
+rev_sub_op(CD,['x','y','z'])
+drawsubop(C,D,1)
+drawrevsubop(CD,['x','y','z'])
