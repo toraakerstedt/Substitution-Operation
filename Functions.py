@@ -92,7 +92,7 @@ C.add_edges_from([(1,2),(1,3),(2,3),(4,1),(4,2)])
 
 D = nx.Graph()
 D.add_nodes_from(['x','y','z']) 
-D.add_edges_from([('x,'y'),('x','z'),('y','z')])
+D.add_edges_from([('x','y'),('x','z'),('y','z')])
 
 AB=sub_op(A,B,1)
 rev_sub_op(AB,['a','b','c'])
